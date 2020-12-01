@@ -3,7 +3,7 @@ import os
 
 _startTime = None
 
-def loadInput(year, day):
+def loadInput(day):
     global _startTime
 
     day = str(day)
