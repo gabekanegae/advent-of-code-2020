@@ -4,22 +4,28 @@
 
 import AOCUtils
 
+decChars = set("0123456789")
+hexChars = set("0123456789abcdef")
+
 checks1 = [
     lambda pp: all(field in pp for field in ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"])
 ]
+
+checks2 = [
+    lambda pp: set(pp["byr"]) <= decChars and 1920 <= int(pp["byr"]) <= 2002,
+    lambda pp: set(pp["iyr"]) <= decChars and 2010 <= int(pp["iyr"]) <= 2020,
+    lambda pp: set(pp["eyr"]) <= decChars and 2020 <= int(pp["eyr"]) <= 2030,
+    lambda pp: set(pp["hgt"][:-2]) <= decChars and \
+               ((pp["hgt"][-2:] == "cm" and 150 <= int(pp["hgt"][:-2]) <= 193) or \
+                (pp["hgt"][-2:] == "in" and 59 <= int(pp["hgt"][:-2]) <= 76)),
+    lambda pp: len(pp["hcl"]) == 7 and pp["hcl"][0] == "#" and set(pp["hcl"][1:]) <= hexChars,
+    lambda pp: pp["ecl"] in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"],
+    lambda pp: len(pp["pid"]) == 9 and set(pp["pid"]) <= decChars
+]
+
 def isValid1(passport):
     return all(check(passport) for check in checks1)
 
-checks2 = [
-    lambda pp: 1920 <= int(pp["byr"]) <= 2002,
-    lambda pp: 2010 <= int(pp["iyr"]) <= 2020,
-    lambda pp: 2020 <= int(pp["eyr"]) <= 2030,
-    lambda pp: (pp["hgt"][-2:] == "cm" and 150 <= int(pp["hgt"][:-2]) <= 193) or \
-               (pp["hgt"][-2:] == "in" and 59 <= int(pp["hgt"][:-2]) <= 76),
-    lambda pp: pp["hcl"][0] == "#" and all(c in "0123456789abcdef" for c in pp["hcl"][1:]),
-    lambda pp: pp["ecl"] in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"],
-    lambda pp: len(pp["pid"]) == 9 and all(c in "0123456789" for c in pp["pid"])
-]
 def isValid2(passport):
     return isValid1(passport) and all(check(passport) for check in checks2)
 
