@@ -10,32 +10,20 @@ boardingPasses = AOCUtils.loadInput(5)
 
 seatIDs = []
 for boardingPass in boardingPasses:
-    lo, hi = 0, 127
-    for c in boardingPass[:7]:
+    lo, hi = 0, (2 ** len(boardingPass)) - 1
+    for c in boardingPass:
         mid = (lo + hi) // 2
-        if c == "F":
+        if c in "FL":
             hi = mid
-        elif c == "B":
+        elif c in "BR":
             lo = mid
 
-    row = hi
-
-    lo, hi = 0, 7
-    for c in boardingPass[7:]:
-        mid = (lo + hi) // 2
-        if c == "L":
-            hi = mid
-        elif c == "R":
-            lo = mid
-
-    col = hi
-
-    seatID = 8 * row + col
+    seatID = hi
     seatIDs.append(seatID)
 
 print("Part 1: {}".format(max(seatIDs)))
 
-allSeats = set(range(min(seatIDs), max(seatIDs)+1))
+allSeats = set(range(min(seatIDs), max(seatIDs) + 1))
 missingSeats = allSeats - set(seatIDs) # Assume len(missingSeats) == 1
 
 print("Part 2: {}".format(missingSeats.pop()))
