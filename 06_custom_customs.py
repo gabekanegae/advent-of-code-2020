@@ -1,5 +1,5 @@
 ##################################
-# --- Day 5: Binary Boarding --- #
+# --- Day 6: Binary Boarding --- #
 ##################################
 
 import AOCUtils
