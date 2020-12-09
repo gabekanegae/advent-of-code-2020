@@ -17,18 +17,18 @@ for i in range(25, len(data)):
 print("Part 1: {}".format(p1))
 
 i = 0
-j = 2
+j = 1
 cumSum = data[i]
 while i < len(data):
-    cumSum += data[j-1]
+    cumSum += data[j] # cumSum == sum(data[i:j+1])
 
     if cumSum == p1:
-        p2 = min(data[i:j]) + max(data[i:j])
+        p2 = min(data[i:j+1]) + max(data[i:j+1])
         break
 
     if cumSum > p1 or j == len(data) - 1:
         i += 1
-        j = i + 1
+        j = i
         cumSum = data[i]
 
     j += 1
