@@ -43,16 +43,14 @@ for instruction in program:
             if c == "1":
                 idx[i] = c
 
-        n = mask.count("X")
+        floating = [i for i, c in enumerate(mask) if c == "X"]
+        n = len(floating)
         for bits in range(2**n):
             bits = bin(bits)[2:].zfill(n)
 
             newIdx = idx[:]
-            b = 0
-            for i, c in enumerate(mask):
-                if c == "X":
-                    newIdx[i] = bits[b]
-                    b += 1
+            for i, b in zip(floating, bits):
+                newIdx[i] = b
 
             newIdx = int("".join(newIdx), 2)
             mem[newIdx] = int(data)
