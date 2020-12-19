@@ -24,11 +24,7 @@ def parseRule(rule):
 
 rawInput = AOCUtils.loadInput(19)
 
-for i in range(len(rawInput)):
-    if rawInput[i] == "": rawInput[i] = "\n"
-
 rawRules, rawMessages = "\n".join(rawInput).split("\n\n")
-
 rawRules = rawRules.split("\n")
 messages = rawMessages.split("\n")
 

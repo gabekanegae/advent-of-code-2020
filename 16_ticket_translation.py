@@ -8,11 +8,7 @@ import AOCUtils
 
 rawInput = AOCUtils.loadInput(16)
 
-for i in range(len(rawInput)):
-    if rawInput[i] == "": rawInput[i] = "\n"
-
 rawFields, rawMyTicket, rawNearbyTickets = "\n".join(rawInput).split("\n\n")
-
 rawFields = rawFields.strip().split("\n")
 rawMyTicket = rawMyTicket.strip().split("\n")
 rawNearbyTickets = rawNearbyTickets.strip().split("\n")
