@@ -20,7 +20,7 @@ def parseRule(rule):
     else:
         strRule = [parseRule(c) for c in rule]
         strRule = "".join(strRule)
-        return "(" + strRule + ")"
+        return "(?:" + strRule + ")"
 
 ####################################
 
