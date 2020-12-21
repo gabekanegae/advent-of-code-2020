@@ -49,18 +49,19 @@ possibleCausesList = list(possibleCauses.items())
 allergyCauses = dict()
 for i in range(len(possibleCausesList)):
     # Always get the ingredient with the smallest amount of possibilities
-    if len(possibleCausesList[0][1]) != 1:
-        possibleCausesList.sort(key=lambda x: len(x[1]))
+    # i.e. sort by descending set length (so it can be later popped in O(1))
+    if len(possibleCausesList[-1][1]) != 1:
+        possibleCausesList.sort(key=lambda x: len(x[1]), reverse=True)
 
-    # Assume len(possibleCausesList[0][1]) == 1, i.e. there's only one answer
-    allergy, possible = possibleCausesList[0]
-
+    # Assume len(possible) == 1, i.e. there's only one answer
+    allergy, possible = possibleCausesList[-1]
     cause = possible.pop()
 
     allergyCauses[allergy] = cause
 
+    possibleCausesList.pop() # Remove allergy that had its cause identified
+
     # Remove determined cause from all other possibilities
-    possibleCausesList.pop(0)
     for j in range(len(possibleCausesList)):
         possibleCausesList[j][1].discard(cause)
 
