@@ -4,6 +4,8 @@
 
 Here lies my solutions to [Advent of Code 2020](https://adventofcode.com/2020), an Advent calendar full of programming puzzles from December 1st all the way to Christmas.
 
+This year I managed to be awake at every puzzle release (midnight EST/UTC-5, 2AM my time) and finished all them in the minutes/hours that followed! With that, I beat my last year's score, this time placing at 167th on the Global Leaderboard with 389 points across 6 leaderboard finishes! I also got top 500 on exactly half of the days, so that's cool as well! I did some pretty cools plots of my completion times over at [time-plots](time-plots) if you want to check those out. 
+
 ## Inputs and Outputs
 
 All inputs are read from `inputs\inputXX.txt`, with `XX` being the zero-padded day. As per the creator's request, they are not available in this repository and should be downloaded directly from the event website.
