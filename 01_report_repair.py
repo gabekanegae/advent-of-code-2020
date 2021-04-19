@@ -10,7 +10,7 @@ def twoSum(counts, target):
             return i * (target-i)
 
 def threeSum(counts, target):
-    for i in counts.keys():
+    for i in counts:
         twoSumResult = twoSum(counts, target-i)
         if twoSumResult is not None:
             return i * twoSumResult
